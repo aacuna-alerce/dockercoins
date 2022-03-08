@@ -7,7 +7,7 @@ networks:
   rng:
     internal: true
 secrets:
-  hasher: 
+  hasher:
     file: ./hasher/hasher.rb
   rng:
     file: ./rng/rng.py
@@ -17,7 +17,7 @@ secrets:
     file: ./worker/worker.py
 services:
   hasher:
-    command:
+    command: 
       - hasher.rb
     entrypoint:
       - ruby
@@ -37,15 +37,15 @@ services:
     networks:
       - redis
     user: redis
-    volume:
-      -
+    volumes:
+      - 
         read_only: false
         source: redis
         target: /data/
         type: volume
     working_dir: /data/
   rng:
-    command:
+    command: 
       - rng.py
     entrypoint:
       - python
@@ -61,7 +61,7 @@ services:
     user: nobody
     working_dir: /app/
   webui:
-    command:
+    command: 
       - webui.js
     entrypoint:
       - node
@@ -77,7 +77,7 @@ services:
     user: nobody
     working_dir: /app/
   worker:
-    command:
+    command: 
       - worker.py
     entrypoint:
       - python
